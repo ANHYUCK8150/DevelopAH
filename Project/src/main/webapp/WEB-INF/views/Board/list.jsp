@@ -50,7 +50,7 @@
 	<div class="searchInput" style="float: right;">
 		<div class="searchTotal">
 			<select class="searchSelect" id="searchOption" name="searchOption">
-				<option value="1"  selected="">글제목</option>
+				<option value="1"  selected="">제목</option>
 				<option value="2">내용</option>
 				<option value="3">작성자</option>
 			</select>
@@ -66,7 +66,7 @@
 				<!-- start condition option -->
 				<div class="conditionOption">
 					<div class="totalArea">
-						<span class="tot">총 <span class="num">${QnaListCnt }</span></span> 
+						<span class="tot">총 <span class="num">${ListCnt }</span></span> 
 						<span class="pageNum">페이지 번호 <span><strong class="num">1</strong>
 						<span class="slash">/<span class="totNum">${paging.lastPage }</span></span></span></span>
 					</div>
@@ -77,6 +77,7 @@
 					<table style="border-collapse: collapse;">
 						<colgroup>
 							<col style="width: 70px;">
+							<col style="width: 70px;">
 							<col style="width: auto;">
 							<col style="width: 70px;">
 							<col style="width: 160px;">
@@ -84,28 +85,23 @@
 						</colgroup>
 						<thead>
 							<tr>
+								<th>비고</th>
 								<th>번호</th>
-								<th>글제목</th>
+								<th>제목</th>
 								<th>조회수</th>
 								<th>등록일</th>
 								<th>작성자</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${QnaList }" var="QnaList">
+							<c:forEach items="${BoradList }" var="BoradList">
 								<tr>
-									<c:choose>
-										<c:when test="${QnaList.qbParent != 0 }">
-											<td><img src="/resources/images/reply_icon.png" width="16px" /></td>
-										</c:when>
-										<c:otherwise>
-											<td>${QnaList.qbNo }</td>
-										</c:otherwise>
-									</c:choose>
-									<td style="text-align:left;"><a href="/QnaView?qbIdx=${QnaList.qbIdx }" >${QnaList.qbSubject }</a></td>
-									<td>${QnaList.qbCnt }</td>
-									<td>${QnaList.qbRegDT }</td>
-									<td>${QnaList.qbOwner }</td>
+									<td>${BoradList.qbNo }</td>
+									<td>${BoradList.qbState }</td>
+									<td style="text-align:left;"><a href="/QnaView?qbIdx=${BoradList.qbIdx }" >${BoradList.qbSubject }</a></td>
+									<td>${BoradList.qbCnt }</td>
+									<td>${BoradList.qbRegDT }</td>
+									<td>${BoradList.qbOwner }</td>
 								</tr>
 							</c:forEach>
 						</tbody>

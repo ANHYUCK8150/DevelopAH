@@ -6,6 +6,8 @@
 		<typeAlias alias="ProjectVO" type="com.my.page.VO.ProjectVO" />
 		<typeAlias alias="SkillVO" type="com.my.page.VO.SkillVO" />
 		<typeAlias alias="MemberVO" type="com.my.page.VO.MemberVO" />
+		<typeAlias alias="BoardVO" type="com.my.page.VO.BoardVO" />
+		<typeAlias alias="BoardReplyVO" type="com.my.page.VO.BoardReplyVO" />
 	</typeAliases>
 </configuration>
 

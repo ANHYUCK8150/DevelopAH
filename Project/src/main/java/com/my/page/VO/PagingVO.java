@@ -9,7 +9,14 @@ public class PagingVO {
 		private String searchProject;
 		private String searchText;
 		private String searchOption;
+		private String boardOption;
 		
+		public String getBoardOption() {
+			return boardOption;
+		}
+		public void setBoardOption(String boardOption) {
+			this.boardOption = boardOption;
+		}
 		public String getSearchText() {
 			return searchText;
 		}

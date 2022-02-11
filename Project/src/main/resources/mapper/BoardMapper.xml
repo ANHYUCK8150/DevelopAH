@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+	<select id="listCnt" resultType="string">
+		select
+			count(*)
+		from
+			qboard
+		where 1=1
+			<if test="searchText != null">
+				<choose>
+					<when test="searchOption == '1'">
+						and qbSubject like concat('%',#{searchText},'%')
+					</when>
+					<when test="searchOption == '2'">
+						and qbContent like concat('%',#{searchText},'%')
+					</when>
+					<otherwise>
+						and qbOwner like concat('%',#{searchText},'%')
+					</otherwise>
+				</choose>
+			</if>
+			
+			and qbOption = #{boardOption}
+	</select>
+	
+	<select id="list" resultType="BoardVO">
+		select
+			*
+		from (
+			select
+				@ROWNUM := @ROWNUM + 1 AS rowNum
+				, q.*
+			from 
+				qboard q, (SELECT @ROWNUM := 0 ) TMP
+			where 1=1
+			<if test="searchText != null">
+				<choose>
+					<when test="searchOption == '1'">
+						and qbSubject like concat('%',#{searchText},'%')
+					</when>
+					<when test="searchOption == '2'">
+						and qbContent like concat('%',#{searchText},'%')
+					</when>
+					<otherwise>
+						and qbOwner like concat('%',#{searchText},'%')
+					</otherwise>
+				</choose>
+			</if>
+			and qbOption = #{boardOption}
+			order by qbNo desc
+		) a
+		where
+			rowNum between #{start} and #{end}
+		order by qbNo desc
+	</select>
+	
+	<select id="GetQnaOne" resultType="BoardVO">
+		select
+			*
+		from
+			qboard
+		where 1=1
+			and qbIdx = #{qbIdx}
+	</select>
+	
+	<insert id="InsertQna">
+		insert into qboard set
+			qbParent = 0
+			,qbNo = (select max(b.qbNo) + 1 from qboard b)
+			,qbSubject = #{qbSubject}
+			,qbContent = #{qbContent}
+			,qbCnt = 0
+			,qbRegDT = now()
+			,qbOwner = #{qbOwner}
+	</insert>
+	
+	<insert id="InsertReply">
+		insert into qboard set
+			qbParent = #{qbIdx}
+			,qbNo = #{qbNo}
+			,qbSubject = #{qbSubject}
+			,qbContent = #{qbContent}
+			,qbCnt = 0
+			,qbRegDT = now()
+			,qbOwner = #{qbOwner}
+	</insert>
+	
+	<update id="SetCntUP">
+		update qboard set
+			qbCnt = qbCnt + 1
+		where 1=1
+			and qbIdx = #{qbIdx}
+	</update>
+	
+	<update id="UpdateQna">
+		update qboard set
+			qbSubject = #{qbSubject}
+			,qbContent = #{qbContent}
+		where 1=1
+			and qbIdx = #{qbIdx}
+	</update>
+</mapper>
