@@ -186,31 +186,45 @@
 	<div class="use" style="width:100%;">
 		<div class="divWrap">
 			<h2>게시글</h2>
-			<ul>
-				<li class="resistGuide">
-					<a href="/Manual"  >
-						<div>
-							<strong>등록가이드</strong>
-							<p>자재 및 설비 자재 등록에 대한 가이드 입니다.<br>사 및 자재정보, 시험성적서 등 자재 관련 정보를<br>등록하실 경우 참고하여 주세요.</p>
-						</div>
-					</a>
-				</li>
-				<li class="searchGuide">
-					<a href="/Register" >
-						<div>
-							<strong>검색가이드</strong>
-							<p>자재 및 설비 관련 자재정보, 가격,<br>시험성적서 등 검색을 위한 가이드 입니다.<br>원하시는 자재정보 검색 시 참고하여 주세요.</p>
-						</div>
-					</a>
-				</li>
-				<li class="goodsGuide">
-					<a href="/Introduce"  >
-						<div>
-							<strong>자재 구성 체계</strong>
-							<p>자재의 등록 코드 체계 및 PK 체계에 대한<br>설명입니다. 코드에 따라 자재의 분류체계를<br>확인하실 수 있습니다.</p>
-						</div>
-					</a>
-				</li>
-			</ul>
+			<div class="listDetailType01" style="margin-top:40px;">
+				<table style="border-collapse: collapse;">
+					<colgroup>
+						<col style="width: 70px;">
+						<col style="width: 80px;">
+						<col style="width: auto;">
+						<col style="width: 160px;">
+						<col style="width: 160px;">
+					</colgroup>
+					<thead>
+						<tr>
+							<th>종류</th>
+							<th>번호</th>
+							<th>제목</th>
+							<th>등록일</th>
+							<th>작성자</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${BoradList }" var="BoradList">
+							<tr>
+								<td>
+									<c:choose>
+										<c:when test="${BoradList.qbOption == 'qna'}">
+											<span style="background:#ccc; padding: 7px 10px; color: white;">질문</span>
+										</c:when>
+										<c:otherwise>
+											<span><span style="background:black; padding: 7px 10px; color: white;">공지</span></span>
+										</c:otherwise>
+									</c:choose>
+								</td>
+								<td>${BoradList.qbNo }</td>
+								<td style="text-align:left;"><a href="/board/view.do?op=${title }&qbIdx=${BoradList.qbIdx }" >${BoradList.qbSubject }</a></td>
+								<td>${BoradList.qbRegDT }</td>
+								<td>${BoradList.qbOwner }</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
 		</div>
 	</div>

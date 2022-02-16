@@ -6,7 +6,7 @@
 	<!-- start condition option -->
 	<div class="conditionOption">
 		<div class="totalArea">
-			<span class="tot">총 <span class="num">${QnaListCnt }</span></span> 
+			<span class="tot">총 <span class="num">${ListCnt }</span></span> 
 			<span class="pageNum">페이지 번호 <span><strong class="num">1</strong>
 			<span class="slash">/<span class="totNum">${paging.lastPage }</span></span></span></span>
 		</div>
@@ -17,35 +17,40 @@
 		<table style="border-collapse: collapse;">
 			<colgroup>
 				<col style="width: 70px;">
+				<col style="width: 80px;">
 				<col style="width: auto;">
-				<col style="width: 70px;">
 				<col style="width: 160px;">
 				<col style="width: 160px;">
 			</colgroup>
 			<thead>
 				<tr>
+					<th></th>
 					<th>번호</th>
-					<th>글제목</th>
-					<th>조회수</th>
+					<th>제목</th>
 					<th>등록일</th>
 					<th>작성자</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${QnaList }" var="QnaList">
+				<c:forEach items="${BoradList }" var="BoradList">
 					<tr>
-						<c:choose>
-							<c:when test="${QnaList.qbParent != 0 }">
-								<td><img src="/resources/images/reply_icon.png" width="16px" /></td>
-							</c:when>
-							<c:otherwise>
-								<td>${QnaList.qbNo }</td>
-							</c:otherwise>
-						</c:choose>
-						<td style="text-align:left;"><a href="/QnaView?pbIdx=${QnaList.qbIdx }" >${QnaList.qbSubject }</a></td>
-						<td>${QnaList.qbCnt }</td>
-						<td>${QnaList.qbRegDT }</td>
-						<td>${QnaList.qbOwner }</td>
+						<td>
+							<c:choose>
+								<c:when test="${BoradList.qbState == '완료'}">
+									<span style="background:#2fcb12; padding: 7px 10px; color: white;">${BoradList.qbState }</span>
+								</c:when>
+								<c:when test="${BoradList.qbState == '대기'}">
+									<span style="background:#ccc; padding: 7px 10px; color: white;">${BoradList.qbState }</span>
+								</c:when>
+								<c:otherwise>
+									<span></span>
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td>${BoradList.qbNo }</td>
+						<td style="text-align:left;"><a href="/board/view.do?op=${title }&qbIdx=${BoradList.qbIdx }" >${BoradList.qbSubject }</a></td>
+						<td>${BoradList.qbRegDT }</td>
+						<td>${BoradList.qbOwner }</td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -53,9 +58,18 @@
 	</div>
 	<!-- end list 1 -->
 	<div class="choiceBtn">
-		<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
-			<a href="/QnaList_Reg">등록</a>
-		</div>
+		<c:choose>
+			<c:when test="${title == 'qna' }">
+				<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
+					<a href="/board/reg.do?op=${title}">등록</a>
+				</div>
+			</c:when>
+			<c:when test="${memberInfo.mbID == 'admin' }">
+				<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
+					<a href="/board/reg.do?op=${title}">등록</a>
+				</div>
+			</c:when>
+		</c:choose>
 	</div>							
 	<!-- start paging -->
 	

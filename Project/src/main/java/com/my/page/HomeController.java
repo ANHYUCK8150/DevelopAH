@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.my.page.VO.BoardVO;
 import com.my.page.VO.PagingVO;
 import com.my.page.VO.ProjectVO;
+import com.my.page.service.BoardService;
 import com.my.page.service.ProjectService;
 
 /**
@@ -25,6 +27,9 @@ public class HomeController {
 	
 	@Resource(name="ProService")
 	private ProjectService proService;
+	
+	@Resource(name="boardService")
+	private BoardService boardService;
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
@@ -50,16 +55,23 @@ public class HomeController {
 		pagingVO.setSearchText(searchText);
 		
 		//프로젝트 리스트 총합
-		String listCnt = proService.listCnt(pagingVO);
+		//String listCnt = proService.listCnt(pagingVO);
 		
 		//페이징 변수 선언
-		pagingVO.PagingInit(Integer.parseInt(listCnt), Integer.parseInt("1"), Integer.parseInt("99"));
+		pagingVO.PagingInit(Integer.parseInt("99"), Integer.parseInt("1"), Integer.parseInt("99"));
 		
 		//리스트
 		List<ProjectVO> list = proService.list(pagingVO);
 		
 		//model
 		model.addAttribute("projectList", list);
+		
+		//페이징 변수 선언
+		pagingVO.PagingInit(Integer.parseInt("99"), Integer.parseInt("1"), Integer.parseInt("6"));
+		
+		//리스트
+		List<BoardVO> boardlist = boardService.list(pagingVO);
+		model.addAttribute("BoradList", boardlist);
 		
 		return "/Home/home";
 	}

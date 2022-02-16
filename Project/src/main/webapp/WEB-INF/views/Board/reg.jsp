@@ -18,6 +18,8 @@
 			$("#SubmitButton").click(function(){
 				var qbSubject = $("#qbSubject").val();
 				var qbOwner = $("#qbOwner").val();
+				var qbPW = $("#qbPW").val();
+				var qbIdx = $("#qbIdx").val();
 				
 				if(qbSubject == "" || qbSubject == undefined){
 					alert("글제목을 입력하세요.");
@@ -30,12 +32,43 @@
 					$("#qbOwner").focus();
 					return;
 				}
+				
+				if(qbPW == "" || qbPW == undefined){
+					alert("비밀번호를 입력하세요.");
+					$("#qbPW").focus();
+					return;
+				}
+				
+				if(qbIdx != ""){
+					var result = "";
+					$.ajax({
+				        url: "board_PWchk.do",
+				        type: "POST",
+				        async:false,
+				        data: {
+				        	"qbIdx" : qbIdx
+				        	,"qbPW" : qbPW
+				        },
+				        success: function(data){
+				        	result = data;
+				        },
+				        error: function(){
+				            
+				        }
+				    });
+					
+					if(result != "FIND"){
+						alert("해당글의 비밀번호가 아닙니다.");
+						$("#qbPW").focus();
+						return;
+					}
+				}
 	
-				$("#regForm").attr("method","post").attr("action","QnaModify").submit();
+				$("#regForm").attr("method","post").attr("action","modify.do?op=${title}&option=${reply}").submit();
 			});
 			
 			$("#CancelButton").click(function(){
-				location.href="QnA";
+				location.href="board.do?op=${title}";
 			});
 			
 			
@@ -48,11 +81,18 @@
 					<c:when test="${reply != null}">
 						<h2>질문과 답변 답글</h2>
 					</c:when>
-					<c:when test="${qnaList.qbIdx != null}">
+					<c:when test="${ParentList.qbIdx != null}">
 						<h2>질문과 답변 수정</h2>
 					</c:when>
 					<c:otherwise>
-						<h2>질문과 답변 등록</h2>
+						<c:choose>
+							<c:when test="${title == 'notice' }">
+								<h2>공지사항 등록</h2>
+							</c:when>
+							<c:when test="${title == 'qna' }">
+								<h2>질문과 답변 등록</h2>
+							</c:when>
+						</c:choose> 
 					</c:otherwise>
 				</c:choose>
 				<span style="color:#999; float:left; height:32px; line-height:50px;"></span>
@@ -60,8 +100,9 @@
 		</div>
 		
 		<form id="regForm" enctype="multipart/form-data">
-			<input type="hidden" id="qbIdx" name="qbIdx" value="${qnaList.qbIdx }">
-			<input type="hidden" id="qbNo" name="qbNo" value="${qnaList.qbNo }">
+			<input type="hidden" id="qbIdx" name="qbIdx" value="${ParentList.qbIdx }">
+			<input type="hidden" id="qbNo" name="qbNo" value="${ParentList.qbNo }">
+			<input type="hidden" id="qbID" name="qbID" value="${memberInfo.mbID }">
 			<c:if test="${reply != null }">
 				<input type="hidden" id="option" name="option" value="${reply }">
 			</c:if>
@@ -75,45 +116,70 @@
 				<tbody>
 					<tr>
 						<th scope="row" class="thead">
-							<label>작성자</label><label class="th_input_css"><img src="resources/images/icon_medium_blck1.png" alt="필수항목"></label>
+							<label>작성자</label><label class="th_input_css"><img src="${path}/resources/images/icon_medium_blck1.png" alt="필수항목"></label>
 						</th>
 						<c:choose>
-							<c:when test="${qnaList.qbIdx != null }">
-								<td colspan="3"><input name="qbOwner" id="qbOwner" value="${qnaList.qbOwner }" style="width:85%; border:solid 1px #cecece;" readonly></td>
-							</c:when>
-							<c:when test="${memberInfo.mbNM != null }">
-								<td colspan="3"><input name="qbOwner" id="qbOwner" value="${memberInfo.mbNM }" style="width:85%; border:solid 1px #cecece;" readonly></td>
+							<c:when test="${ParentList.qbIdx != null }">
+								<c:choose>
+									<c:when test="${memberInfo.mbID == ParentList.qbID }">
+										<td colspan="3"><input name="qbOwner" id="qbOwner" value="${ParentList.qbOwner }" style="width:94%; border:solid 1px #cecece;" readonly></td>
+										<input type="hidden" id="qbPW" value="${memberInfo.mbID }" >
+									</c:when>
+									<c:otherwise>
+										<td><input name="qbOwner" id="qbOwner" name="qbPW" value="${ParentList.qbOwner }" style="width:85%; border:solid 1px #cecece;" ></td>
+										<th scope="row" class="thead">
+											<label>비밀번호</label><label class="th_input_css"><img src="${path}/resources/images/icon_medium_blck1.png" alt="필수항목"></label>
+										</th>
+										<c:choose>
+											<c:when test="${memberInfo.mbID == 'admin' }">
+												<td><input type="password" id="qbPW" name="qbPW" value="${ParentList.qbPW }" style="width:85%; border:solid 1px #cecece;" ></td>
+											</c:when>
+											<c:otherwise>
+												<td><input type="password" id="qbPW" name="qbPW" value="" style="width:85%; border:solid 1px #cecece;" ></td>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
 							</c:when>
 							<c:otherwise>
-								<td colspan="3"><input name="qbOwner" id="qbOwner" value="" style="width:85%; border:solid 1px #cecece;" ></td>
+								<c:choose>
+									<c:when test="${memberInfo.mbID != null }">
+										<td colspan="3"><input name="qbOwner" id="qbOwner" value="${memberInfo.mbNM }" style="width:94%; border:solid 1px #cecece;" readonly></td>
+										<input type="hidden" id="qbPW" name="qbPW" value="${memberInfo.mbID }" >
+									</c:when>
+									<c:otherwise>
+										<td><input name="qbOwner" id="qbOwner" name="qbPW" value="" style="width:85%; border:solid 1px #cecece;" ></td>
+										<th scope="row" class="thead">
+											<label>비밀번호</label><label class="th_input_css"><img src="${path}/resources/images/icon_medium_blck1.png" alt="필수항목"></label>
+										</th>
+										<td><input type="password" id="qbPW" name="qbPW" value="" style="width:85%; border:solid 1px #cecece;" ></td>
+									</c:otherwise>
+								</c:choose>
 							</c:otherwise>
 						</c:choose>
 						
 					</tr>
 					<tr>
 						<th scope="row" class="thead">
-							<label>글제목</label><label class="th_input_css"><img src="resources/images/icon_medium_blck1.png" alt="필수항목"></label>
+							<label>글제목</label><label class="th_input_css"><img src="${path}/resources/images/icon_medium_blck1.png" alt="필수항목"></label>
 						</th>
-						<td colspan="3"><input name="qbSubject" id="qbSubject" value="${qnaList.qbSubject }" style="width:85%; border:solid 1px #cecece;" ></td>
+						<td colspan="3"><input name="qbSubject" id="qbSubject" value="${ParentList.qbSubject }" style="width:94%; border:solid 1px #cecece;" ></td>
 					</tr>
 					<tr>
 						<th>
 							<label>내용</label>
 						</th>
 						<td colspan="3">
-							<textarea id="qbContent" name="qbContent" rows="40">${qnaList.qbContent }</textarea>
+							<textarea id="qbContent" name="qbContent" rows="40">${ParentList.qbContent }</textarea>
 						</td>
 					</tr>
 				</tbody>
 			</table>
 		</form>
-		<div class="confirmArea">
+		<div class="confirmArea" style="margin-bottom:30px;">
 			<button type="button" class="regItem btnEndProduct" id="SubmitButton" style="width:130px;">
 				<c:choose>
-					<c:when test="${reply != null}">
-						답글
-					</c:when>
-					<c:when test="${qnaList.qbIdx != null}">
+					<c:when test="${ParentList.qbIdx != null}">
 						수정
 					</c:when>
 					<c:otherwise>

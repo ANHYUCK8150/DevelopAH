@@ -5,10 +5,11 @@
 <script type="text/javascript">
 	function changePaging(page){	
 		$.ajax({
-	        url: "QnaList",
+	        url: "board_ajax.do",
 	        type: "POST",
 	        data: {
 	        	"nowPage" : page
+	        	,"op" : "${title}"
 	        	,"searchText" : $("#searchText").val()
 	        	,"searchOption" : $("#searchOption").val()
 	        },
@@ -77,18 +78,16 @@
 					<table style="border-collapse: collapse;">
 						<colgroup>
 							<col style="width: 70px;">
-							<col style="width: 70px;">
+							<col style="width: 80px;">
 							<col style="width: auto;">
-							<col style="width: 70px;">
 							<col style="width: 160px;">
 							<col style="width: 160px;">
 						</colgroup>
 						<thead>
 							<tr>
-								<th>비고</th>
+								<th></th>
 								<th>번호</th>
 								<th>제목</th>
-								<th>조회수</th>
 								<th>등록일</th>
 								<th>작성자</th>
 							</tr>
@@ -96,10 +95,21 @@
 						<tbody>
 							<c:forEach items="${BoradList }" var="BoradList">
 								<tr>
+									<td>
+										<c:choose>
+											<c:when test="${BoradList.qbState == '완료'}">
+												<span style="background:#2fcb12; padding: 7px 10px; color: white;">${BoradList.qbState }</span>
+											</c:when>
+											<c:when test="${BoradList.qbState == '대기'}">
+												<span style="background:#ccc; padding: 7px 10px; color: white;">${BoradList.qbState }</span>
+											</c:when>
+											<c:otherwise>
+												<span><span style="background:black; padding: 7px 10px; color: white;">공지</span></span>
+											</c:otherwise>
+										</c:choose>
+									</td>
 									<td>${BoradList.qbNo }</td>
-									<td>${BoradList.qbState }</td>
-									<td style="text-align:left;"><a href="/QnaView?qbIdx=${BoradList.qbIdx }" >${BoradList.qbSubject }</a></td>
-									<td>${BoradList.qbCnt }</td>
+									<td style="text-align:left;"><a href="/board/view.do?op=${title }&qbIdx=${BoradList.qbIdx }" >${BoradList.qbSubject }</a></td>
 									<td>${BoradList.qbRegDT }</td>
 									<td>${BoradList.qbOwner }</td>
 								</tr>
@@ -109,9 +119,18 @@
 				</div>
 				<!-- end list 1 -->
 				<div class="choiceBtn">
-					<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
-						<a href="/QnaList_Reg">등록</a>
-					</div>
+					<c:choose>
+						<c:when test="${title == 'qna' }">
+							<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
+								<a href="/board/reg.do?op=${title}">등록</a>
+							</div>
+						</c:when>
+						<c:when test="${memberInfo.mbID == 'admin' }">
+							<div class="regNewItem" id="regNewItem" style="margin-right:5px;">
+								<a href="/board/reg.do?op=${title}">등록</a>
+							</div>
+						</c:when>
+					</c:choose>
 				</div>							
 				<!-- start paging -->
 				

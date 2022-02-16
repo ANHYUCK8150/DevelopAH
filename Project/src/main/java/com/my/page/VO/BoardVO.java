@@ -5,13 +5,20 @@ public class BoardVO {
 	private String qbOption;
 	private String qbNo;
 	private String qbSubject;
-	private String qbConent;
+	private String qbContent;
 	private String qbCnt;
 	private String qbRegDT;
 	private String qbOwner;
 	private String qbID;
 	private String qbPW;
+	private String qbState;
 	
+	public String getQbState() {
+		return qbState;
+	}
+	public void setQbState(String qbState) {
+		this.qbState = qbState;
+	}
 	public String getQbIdx() {
 		return qbIdx;
 	}
@@ -20,6 +27,12 @@ public class BoardVO {
 	}
 	public String getQbOption() {
 		return qbOption;
+	}
+	public String getQbContent() {
+		return qbContent;
+	}
+	public void setQbContent(String qbContent) {
+		this.qbContent = qbContent;
 	}
 	public void setQbOption(String qbOption) {
 		this.qbOption = qbOption;
@@ -35,12 +48,6 @@ public class BoardVO {
 	}
 	public void setQbSubject(String qbSubject) {
 		this.qbSubject = qbSubject;
-	}
-	public String getQbConent() {
-		return qbConent;
-	}
-	public void setQbConent(String qbConent) {
-		this.qbConent = qbConent;
 	}
 	public String getQbCnt() {
 		return qbCnt;

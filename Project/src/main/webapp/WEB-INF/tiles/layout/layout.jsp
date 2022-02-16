@@ -11,6 +11,7 @@
 <!-- JS -->
 <script src="${path}/resources/js/jquery.min.js"></script>
 <script src="${path}/resources/js/common.js"></script>
+<script src="${path}/resources/js/printThis.js"></script>
 <script language="javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -28,7 +29,7 @@
 			<tiles:insertAttribute name="header" />
 			<div class="dim_layer" style="display:  none"></div>
 		</div>
-		<div id="content">
+		<div id="content" style="min-height:653px;">
 			<tiles:insertAttribute name="content" />
 		</div>
 		<div id="footer_wrap">

@@ -78,7 +78,19 @@
 			<div class="logo_wrap"><a href="/home.do" class="logo">개발자 안혁</a></div>
 			<ul class="gnb_menu sub_menu0">
 		        <li class='  '>
-		            <a href="../intro/resume.do" >소개하기</a>
+		            <a href="../intro/introduce.do" >소개하기</a>
+		            <span class="arrow"></span>
+		            <ul class="sub_depth1">
+		            	<li >
+		                	<a href="../intro/introduce.do" >인사말</a>
+		                </li>
+		                <li >
+		                	<a href="../intro/resume.do" >이력서</a>
+		                </li>
+		                <li >
+		                	<a href="../intro/cdt.do?" >코딩테스트</a>
+		                </li>
+		            </ul>
 		        </li>
 		        <li class='  '>
 		            <a href="../project/list.do" >프로젝트</a>
