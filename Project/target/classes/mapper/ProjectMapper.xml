@@ -13,7 +13,6 @@
 					 pbSkill like concat('%',#{arr1},'%')
 			  	</foreach>
 			</if>
-			
 			<if test="searchWork[0] != 'ALL'">
 				and
 				<foreach item="arr2" collection="searchWork" open="(" separator=" or " close=")">

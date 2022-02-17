@@ -169,7 +169,7 @@
 											</dl>
 										</a>
 									</div>
-									<span class="number">1</span>
+									<span class="number">${projectList.pno }</span>
 								</li>
 							</c:forEach>
 						</ul>

@@ -139,6 +139,12 @@
 			$("#ProjectSkill input[name=ProjectSkill]").click(function() {
 				var total = $("#ProjectSkill input[name=ProjectSkill]").length;
 				var checked = $("#ProjectSkill input[name=ProjectSkill]:checked").length;
+				
+				if(checked == 0){
+					alert("하나이상 무조건 선택해야합니다.");
+					$(this).prop("checked",true);
+					return;
+				}
 
 				if(total != checked) $("#ProjectSkill_All").prop("checked", false);
 				else $("#ProjectSkill_All").prop("checked", true); 
@@ -152,6 +158,12 @@
 			$("#ProjectWork input[name=ProjectWork]").click(function() {
 				var total = $("#ProjectWork input[name=ProjectWork]").length;
 				var checked = $("#ProjectWork input[name=ProjectWork]:checked").length;
+				
+				if(checked == 0){
+					alert("하나이상 무조건 선택해야합니다.");
+					$(this).prop("checked",true);
+					return;
+				}
 
 				if(total != checked) $("#ProjectWork_All").prop("checked", false);
 				else $("#ProjectWork_All").prop("checked", true); 

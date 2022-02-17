@@ -202,7 +202,7 @@ th.ds_sunday{color:red}
 .ds_container_wrap{width:100%;height:400px;margin:0 auto;overflow:hidden;/* *zoom:1 */height: 100%;}
 .ds_container_wrap:after{content:"";display:block;clear:both}
 
-.ds_container_wrap .ds_section1{float:left;width:100%;height:205px;overflow:hidden;display:block;}
+.ds_container_wrap .ds_section1{float:left;width:100%;height:205px;display:block;}
 .ds_container_wrap .ds_section1 img{}
 .ds_container_wrap .ds_section1 img:hover{opacity:0.8}
 .ds_container_wrap .ds_section1  ul li.ds_banner_top{position:absolute; z-index:50;}
@@ -2631,7 +2631,7 @@ textarea:-ms-input-placeholder {color:#999;}
 .searchDetailBtnArea .btnInit span:before{content:'';position:absolute;left:0;top:50%;margin-top:-7.5px;background: url('../images/ico_reset.png') no-repeat 0px 0px;background-size:14px 15px;width:14px;height:15px;}
 .searchDetailBtnArea .btnApply{background:#2e343f;color:#fff;border:0;margin-left:5px;}
 
-.searchConditionArea .fRight{width:100%;max-width:895px;}
+.searchConditionArea .fRight{width:100%;max-width:73%;}
 .searchConditionArea .searchDetail{margin-top:40px;}
 
 .detailChartBox {}
