@@ -38,7 +38,11 @@
 								</div>
 								<p class="copyright">copyright &copy; all rights reserved.</p>
 							</div>
+							
 					</div>
+				</div>
+				<div style="">
+					<img src="${path}/resources/images/img_opentype01.jpg" width="120" height="60">
 				</div>
 			</div>
 		</div>

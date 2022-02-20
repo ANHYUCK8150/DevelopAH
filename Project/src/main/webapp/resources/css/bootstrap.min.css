@@ -1,0 +1,15 @@
+.model-open .modal {overflow-x:hidden;overflow-y:auto;}
+.fade.in{opacity:1;}
+.modal{display:none;overflow:hidden;position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1050;outline:0}
+.modal-dialog{width:600px;margin:30px auto;position:relative;}
+.modal-content{position: relative; background-color: #fff; border: 1px solid #999; border: 1px solid transparent; border-radius: 5px; -webkit-box-shadow: 0 3px 9px rgb(0 0 0 / 50%); box-shadow: 0 3px 9px rgb(0 0 0 / 50%); background-clip: padding-box; outline: 0;}
+.modal-header{padding: 15px 20px; border-top-right-radius: 2px; border-top-left-radius: 2px;}
+.modal-body{position: relative; padding: 20px;}
+.modal-footer{padding: 20px; text-align: right; border-top: 1px solid transparent;}
+
+.btn{display: inline-block; margin-bottom: 0; font-weight: normal; text-align: center; vertical-align: middle; touch-action: manipulation; cursor: pointer; background-image: none;  border: 1px solid transparent; white-space: nowrap; padding: 7px 12px; font-size: 13px; line-height: 1.5384616; border-radius: 3px; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none;}
+.gb-info{background-color: #00bcd4; border-color: #00bcd4; color: #fff;}
+.gb-teal{background-color: #009688; border-color: #009688; color: #fff;}
+
+
+

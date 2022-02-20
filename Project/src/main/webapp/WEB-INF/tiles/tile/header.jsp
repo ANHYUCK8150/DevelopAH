@@ -95,7 +95,7 @@
 		        <li class='  '>
 		            <a href="../project/list.do" >프로젝트</a>
 		        </li>
-		        <li class='  active'>
+		        <li class='  '>
 		            <a href="../board/board.do?op=notice" >게시글</a>
 					<span class="arrow"></span>
 		            <ul class="sub_depth1">
@@ -104,6 +104,15 @@
 		                </li>
 		                <li >
 		                	<a href="../board/board.do?op=qna" >QnA</a>
+		                </li>
+		            </ul>
+		        </li>
+		        <li class='  '>
+		            <a href="../api/fruit.do" >API활용</a>
+					<span class="arrow"></span>
+		            <ul class="sub_depth1">
+		                <li >
+		                	<a href="../api/fruit.do" >경락가격정보서비스</a>
 		                </li>
 		            </ul>
 		        </li>

@@ -1,11 +1,31 @@
 package com.my.page.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.nio.charset.Charset;
 import java.util.*;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.my.page.cs.APIClass;
+
+import freemarker.template.utility.StringUtil;
 
 @Controller
 public class CoddingTestContoller {
@@ -13,6 +33,23 @@ public class CoddingTestContoller {
 	@RequestMapping("intro/cdt.do")
 	public String cdt() {
 		return "Intro/cdt";
+	}
+	
+	@RequestMapping("intro/restAPI.do")
+	@ResponseBody
+	public Object restAPI(@RequestParam(value="cattleNo", required=false)String cattleNo) throws UnsupportedEncodingException {
+		
+		APIClass apiVO = new APIClass();
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("dates", "20120720");
+		map.put("lcode", "12");
+		map.put("mcode", "1209");
+		map.put("scode", "");
+		
+		Object result = apiVO.response(map);
+		
+		return result;
 	}
 	
 	@RequestMapping("intro/solution.do")
@@ -106,4 +143,6 @@ public class CoddingTestContoller {
         }
         return true;
     }
+
+
 }

@@ -8,7 +8,7 @@
 	<bean id="dataSourceSpied"
 		class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://blackah.cafe24.com:3306/blackah?characterEncoding=UTF-8&amp;" />
+		<property name="url" value="jdbc:mysql://localhost:3306/blackah?characterEncoding=UTF-8&amp;" />
 		<property name="username" value="blackah" />
 		<property name="password" value="QKRzktm12@" />
 	</bean>

@@ -14,11 +14,15 @@
 <script src="${path}/resources/js/printThis.js"></script>
 <script language="javascript" src="${path}/resources/ckeditor/ckeditor.js"></script>
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+<script src="${path}/resources/js/pignose.calendar.full.min.js"></script>
 
 <!-- CSS -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <link href="${path}/resources/css/reset.css" rel="stylesheet"/>
 <link href="${path}/resources/css/custom.css" rel="stylesheet"/>
+<link href="${path}/resources/css/pignose.calendar.min.css" rel="stylesheet"/>
+
 
 
 <title>개발자 안혁</title>
