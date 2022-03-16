@@ -5,8 +5,8 @@
 .info .tab_wrap {border:1px solid #2d343e;overflow:hidden;margin-bottom:30px;}
 .info .tab_wrap li {cursor:pointer; float:left; width:33.33%; text-align:center; line-height:58px; height:58px; font-size:17px; color:#2d343e;}
 .info .tab_wrap li.active {font-weight:bold; color:#fff; background:#2d343e;}
-#btnPrint{width: 70px; height: 40px; background: #377def; color: white; font-size: 14px; border: none; cursor: pointer;}
-#btnPrint:hover{background: #ccc;}
+.btnCSS{width: 70px; height: 40px; background: #377def; color: white; font-size: 14px; border: none; cursor: pointer;}
+.btnCSS:hover{background: #ccc;}
 
 .page { width: 21cm; min-height: 29.7cm;margin: 0 auto;background:#eee;}
 .subpage {border: 2px red solid;background:#fff;height: 257mm;}
@@ -45,7 +45,7 @@
 		<h2 style = "margin-bottom:20px;">
 			<span>이력서</span>
 			<span style="float:right;">
-				<input type="button" id="btnPrint" value="출력" />
+				<input type="button" class="btnCSS" id="btnPrint" value="출력" />
 			</span>
 		</h2>
 
@@ -518,7 +518,7 @@
 						});
 						$("#printForm").removeClass("page");
 					});
-	
+					
 				</script>
 		</div>
 	</div>

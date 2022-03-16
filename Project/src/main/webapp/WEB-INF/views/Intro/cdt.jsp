@@ -65,7 +65,6 @@
 					
 				</p>
 				
-				<input type="button" id="apiBtn" value="api" >
 			</div>
 		</div>
 		
@@ -392,24 +391,6 @@
 	        });
 		});
 		
-		$("#apiBtn").click(function(){
-			var result = "";
-			$.ajax({
-	            url: "restAPI.do",
-	            type: "POST",
-	            contentType: "application/json; charset=utf-8;",
-                dataType: "json",
-	            data: {
-	            	"cattleNo" : ""
-	            },
-	            success: function(data){
-	            	console.log(data);
-	            },
-	            error: function(){
-	                
-	            }
-	        });
-		});
 
 	</script>
 </div>

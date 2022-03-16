@@ -2706,7 +2706,7 @@ textarea:-ms-input-placeholder {color:#999;}
 
 .listDetailType02 ul {margin-top:14px;}
 .listDetailType02 ul:after {display:block; content:""; clear:both;}
-.listDetailType02 li {float:left; width:299px; height:418px; margin:-3px 0 0 -1px;}
+.listDetailType02 li {float:left; width:33%; height:418px; margin:-3px 0 0 -1px;}
 .listDetailType02 li > div {position:relative; z-index:1; padding:20px; height:374px; border:1px solid #e9e9e9;} /* 20190603 수정 */
 .listDetailType02 li > div:hover {z-index:2; border:1px solid #5f91f1;}
 .listDetailType02 li:first-child {margin-left:0; margin-top:0;}
