@@ -44,31 +44,39 @@ $(document).ready(function(){
 });
 
 </script>
-<div class="ds_mall" style="margin-top:20px;">
-	<div class="ds_login_article_wrap">
-		
-		<div class="goodsSearch">
-            <div class="titleArea">
+
+
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
                 <h2>로그인</h2>
-                <ul class="pageArea">
-                    <li class="firstArea"><a href="/" title="홈"></a></li>
-                    <li class="nowArea">로그인</li>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item active">로그인</li>
                 </ul>
             </div>
-	           
-			<form name="login_form" id="login_form" method="post" action="/Login_OK.do" onsubmit="login(); return false;">
+        </div>
+    </div>
+</div>
+
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+        	<div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12">
+        	<form name="login_form" id="login_form" method="post" action="/Login_OK.do" onsubmit="login(); return false;">
 	            <section class="join">
 	                <div class="joinIp login">
 	                    <dl>
 	                        <dt>아이디</dt>
-	                        <dd><label for="mbID"></label><input type="text" class="input_style valid" title="아이디를 입력하세요." value="" type="text" id="mbID" name="mbID"></dd>
+	                        <dd><label for="mbID"></label><input type="text" class="form-control" title="아이디를 입력하세요." value="" type="text" id="mbID" name="mbID"></dd>
 	                    </dl>
 	                    <dl class="nextDl">
 	                        <dt>비밀번호</dt>
-	                        <dd><label for="mbPW"></label><input type="password" class="input_style" maxlength="25" title="비밀번호를 입력하세요." id="mbPW" name="mbPW" ></dd>
+	                        <dd><label for="mbPW"></label><input type="password" class="form-control" maxlength="25" title="비밀번호를 입력하세요." id="mbPW" name="mbPW" ></dd>
 	                    </dl>
 	                    <div class="confirmArea">
-	                        <button type="button"  id="login_btn"    class="loginBtn regItem">로그인</button>
+	                        <button type="button"  id="login_btn" class="loginBtn regItem">로그인</button>
 	                    </div>
 	                    <div class="loginOption">
 	                        <ul>
@@ -80,11 +88,8 @@ $(document).ready(function(){
 	                </div>
 	            </section>
 	           </form>
-
-	
 	       </div>
-			
-			
-	</div>
-		
+        </div>
+    </div>
 </div>
+

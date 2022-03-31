@@ -12,7 +12,14 @@ public class ProjectVO {
 	private String pbEndDT;
 	private String pbRegDT;
 	private String pbImage;
+	private String pbListClass;
 	
+	public String getPbListClass() {
+		return pbListClass;
+	}
+	public void setPbListClass(String pbListClass) {
+		this.pbListClass = pbListClass;
+	}
 	public String getPbImage() {
 		return pbImage;
 	}

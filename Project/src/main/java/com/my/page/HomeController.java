@@ -66,6 +66,7 @@ public class HomeController {
 		//model
 		model.addAttribute("projectList", list);
 		
+		pagingVO.setBoardOption("notice");
 		//페이징 변수 선언
 		pagingVO.PagingInit(Integer.parseInt("99"), Integer.parseInt("1"), Integer.parseInt("6"));
 		

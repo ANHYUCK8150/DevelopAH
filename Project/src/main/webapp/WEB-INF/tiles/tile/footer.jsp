@@ -1,50 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<style>
-.slider-wrap {transition: all 0.5s ease}
 
-
-</style>
 <footer>
-	<div class="company_wrap">
-		<div class="contents_mot">
-			<div class="footer_wrap">
-				<div class="company">
-					<div class="logo mo_dn"></div>
-						<div class="info">
-							<div class="company_info_wrap">
-								<h5 class="company_name">개발자 안혁</h5>
-								<div class="list">
-									<dl>
-										<dt>작성자</dt>
-										<dd>안혁</dd>
-									</dl>
-									<dl>
-										<dt>메일</dt>
-										<dd><a href="mailto:blackah@nate.com" class="btn_email">blackah@nate.com</a></dd>
-									</dl>
-								</div>
-								<div class="list">
-									<dl>
-										<dt>대표 번호</dt>
-										<dd>010-7137-8150</dd>
-									</dl>
-								</div>
-								<div class="list">
-									<dl>
-										<dt>주소</dt>
-										<dd>서울시 양천구 은행정로 13길 21 </dd>
-									</dl>
-								</div>
-								<p class="copyright">copyright &copy; all rights reserved.</p>
-							</div>
-							
-					</div>
-				</div>
-				<div style="">
-					<img src="${path}/resources/images/img_opentype01.jpg" width="120" height="60">
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="footer-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-link-contact">
+                        <h4>소개</h4>
+                        <ul>
+                        	<li>
+                                <p><i class="fas fa-user"></i>개발자 안혁</p>
+                            </li>
+                        	<li>
+                                <p><i class="fas fa-map-marker-alt"></i>주소: 서울시 양천구 은행정로 13길 21 </p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-phone-square"></i>Phone: <a href="tel:+8210-7137-8150">010-7137-8150</a></p>
+                            </li>
+                            <li>
+                                <p><i class="fas fa-envelope"></i>Email: <a href="mailto:blackah@nate.com" class="btn_email">blackah@nate.com</a></p>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-12">
+                    <div class="footer-widget">
+                        <h4>API활용</h4>
+                        <ul>
+                        	<li>
+                        		<img src="${path}/resources/images/img_opentype01.jpg" width="180" height="80">
+                        	</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </footer>
+
+<!-- Start copyright  -->
+<div class="footer-copyright">
+    <p class="footer-company">All Rights Reserved. &copy; 2018 <a href="#">ThewayShop</a> Design By :
+        <a href="https://html.design/">html design</a></p>
+</div>
+<!-- End copyright  -->
+
+<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>

@@ -2,20 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-    
-<link href="${path}/resources/css/bootstrap.min.css" rel="stylesheet"/>
-<link href="${path}/resources/css/jqx.base.css" rel="stylesheet"/>
-<link href="${path}/resources/css/jqx.metro.css" rel="stylesheet"/>
-
-<script src="${path}/resources/js/bootstrap.min.js"></script>
-<script src="${path}/resources/js/jqxcore.js"></script>
-<script src="${path}/resources/js/jqxdata.js"></script>
-<script src="${path}/resources/js/jqxscrollbar.js"></script>
-<script src="${path}/resources/js/jqxbuttons.js"></script>
-<script src="${path}/resources/js/jqxgrid.js"></script>
-<script src="${path}/resources/js/jqxgrid.edit.js"></script>
-<script src="${path}/resources/js/jqxgrid.selection.js"></script>
-<script src="${path}/resources/js/jqxgrid.columnsresize.js"></script>
 
  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
@@ -26,162 +12,195 @@
 	#gnbTable td:nth-child(10) { color:green; }
 	#gnbTable td:nth-child(7),#gnbTable td:nth-child(8),#gnbTable td:nth-child(9),#gnbTable td:nth-child(10) { text-align:right; padding-right: 5px;}
 	#gnbTable td:nth-child(11),#gnbTable td:nth-child(12) { text-align:left; padding-left:5px;}
+	
+	.listDetailType01 table, .noticeTableWrap table, .noticeDetailTableWrap table {width:100%; margin:14px 0;}
+	.listDetailType01 th {height:52px; background:#f9f9f9; text-align:center;  font-size:15px; border-top:1px solid #666;} /* 20190604 수정 */
+	.listDetailType01 td {height:60px; font-size:15px; padding:0px 0; background:#fff; text-align:center; border-top:1px solid #e9e9e9; font-weight:350; color:#666;} /* 20190529 수정 */
+	.listDetailType01 td a {display:block; font-size:15px;} /* 20190603 수정 */
+	.listDetailType01 td a:hover {text-decoration:underline; color:#377ded;}
+	.listDetailType01 tr:last-child td {border-bottom:1px solid #d5d5d5;}
+	.listDetailType01 td.none {height:438px; font-size:14px; border-top:1px solid #666;}
+	
+	.conditionOption {margin-top:40px;}
+	.conditionOption:after {display:block; content:""; clear:both;}
+	.conditionOption .searchTotal {float:left; width:426px;}
+	
+	.totalArea {float:left; height:40px; margin-right:180px; color:#999; vertical-align:top;}
+	.totalArea > span, .totalArea > strong {display:inline-block; margin-top:26px;}
+	.totalArea .tot {color:#666; font-weight:350; font-size:14px;}
+	.totalArea .num {margin-left:5px; color:#444; font-weight:500; font-size:14px;}
+	.totalArea .pageNum {margin-left:10px; padding-left:10px; font-weight:350; font-size:14px; color:#666;}
+	.totalArea .totNum {margin-left:3px; color:#999; font-weight:500; font-size:14px;}
+	.totalArea .slash {color:#999; font-size:14px; margin-left:3px;}
+	
+	.conditionOption .selectOption .searchSelect {width:117px; height:40px; padding:0px 0 0 9px; border-radius:0; font-weight:300; color:#666; font-size:14px;}
 </style>
 
-<div class="ds_mall" style = " width:1200px; margin:0 auto;">
-	<div class="ds_sub_area" style="width:1200px;">
-		<div class="titleArea">
-			<h2>경락가격정보서비스</h2>
-			 <span><input type="button" id="btnExcel" value="데이터 넣기" style="display:none;"></span>
-			<ul class="pageArea">
-				<li class="firstArea"><a href="/" title="홈"></a></li>
-				<li class="nowArea">경락가격정보서비스</li>
-			</ul>
-		</div>
-	</div>
-	<div class="searchDetailBtnArea" style="margin-top:0px; !important">
-		<div class="searchTotal" style="float:left">
-			<span><input type="text" class="calendar ipText" id="dates" value="" style="width:85px;"></span>
-			<span style="color:#999; height:32px; line-height:50px;">※날짜는 필수 선택입니다.</span>
-		</div>
-		<div style="float:right;">
-			<button class="btnInit" id="btnClear"><span>초기화</span></button>
-			<button class="btnApply" id="btnSearch"><span>검색</span></button>
-		</div>
-	</div>
-	<div class="category_wrap" >
-		<div class="category_all_box mt30" style ="padding-top:20px;">
-			<div class="gory_box w150px">
-				<h2>품류</h2>
-				<div>
-					<ul id="FruitCate0">
-						<c:forEach items="${fruitList }" var="fruitList">
-							<li class = "listItem" ><a data-cate = '${fruitList.hmcIdx }'><p>${fruitList.hmcNM }</p><span></span></a></li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-			<div class="gory_box w220px" id="lgPartContainer">
-				<h2>품목</h2>
-				<div>
-					<ul id="FruitCate1"></ul>
-				</div>
-			</div>
-			<div class="gory_box w220px" id="msPartContainer">
-				<h2>품종</h2>
-				<div>
-					<ul id="FruitCate2"></ul>
-				</div>
-			</div>
-			
-			<div class="gory_box w260px" id="MarketPartContainer" style="margin-left:5%">
-				<h2>도매시장</h2>
-				<div>
-					<ul id="Market">
-						<c:forEach items="${marketList }" var="marketList">
-							<li class = "listItem" ><a data-cate = '${marketList.hmcIdx }'><p>${marketList.hmcNM }</p><span></span></a></li>
-						</c:forEach>
-					</ul>
-				</div>
-			</div>
-			<div class="gory_box w260px" id="CompanyPartContainer">
-				<h2>도매법인</h2>
-				<div>
-					<ul id="Company"></ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<div class="searchConditionArea floatBox" style="margin-top:10px; !important">
-		<!-- start detail condition -->
-		<div id="GridList" style="float: none !important;">
-			<div class="searchDetail" style="margin-top:20px;">
-				<div class="detailChartBox">
-					<a>등급별 규격 대비 가격 그래프 보기<span class="openIcon"></span></a>
-				</div>
-				<div class="detailChart" id="detailChart" style = "width:100%; height:400px;">
-					
-					
-				</div>
-				<!-- start condition option -->
-				<div class="conditionOption" style="margin-top:20px;">
-					<div class="totalArea">
-						<span class="tot">총 <span class="num" id="totNo">1</span></span> 
-						<span class="pageNum">페이지 번호 <span><strong class="num" id="pageNo">1</strong>
-						<span class="slash">/<span class="totNum" id="totNum">1</span></span></span></span>
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>API활용</h2>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item active">경락가격정보서비스</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+        	<div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12">
+        		<div class="searchDetailBtnArea" style="margin-top:0px; !important">
+					<div class="searchTotal" style="float:left">
+						<span><input type="text" class="calendar ipText" id="dates" value="" style="width:85px;"></span>
+						<span style="color:#999; height:32px; line-height:50px;">※날짜는 필수 선택입니다.</span>
 					</div>
-					<div class="searchTotal" style="float:right;">
-						<div class="selectOption" style="float:right;">
-							<select class="searchSelect devSearchSelect" id="pageCount">
-								<option value="10" selected="">10개씩 보기</option>
-								<option value="20">20개씩 보기</option>
-								<option value="30">30개씩 보기</option>
-								<option value="40">40개씩 보기</option>
-							</select>
+					<div style="float:right;">
+						<button class="btnInit" id="btnClear"><span>초기화</span></button>
+						<button class="btnApply" id="btnSearch"><span>검색</span></button>
+					</div>
+				</div>
+				<div class="category_wrap" >
+					<div class="category_all_box mt30" style ="padding-top:20px;">
+						<div class="gory_box w150px">
+							<h2>품류</h2>
+							<div>
+								<ul id="FruitCate0">
+									<c:forEach items="${fruitList }" var="fruitList">
+										<li class = "listItem" ><a data-cate = '${fruitList.hmcIdx }'><p>${fruitList.hmcNM }</p><span></span></a></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<div class="gory_box w220px" id="lgPartContainer">
+							<h2>품목</h2>
+							<div>
+								<ul id="FruitCate1"></ul>
+							</div>
+						</div>
+						<div class="gory_box w220px" id="msPartContainer">
+							<h2>품종</h2>
+							<div>
+								<ul id="FruitCate2"></ul>
+							</div>
+						</div>
+						
+						<div class="gory_box w260px" id="MarketPartContainer" style="margin-left:5%">
+							<h2>도매시장</h2>
+							<div>
+								<ul id="Market">
+									<c:forEach items="${marketList }" var="marketList">
+										<li class = "listItem" ><a data-cate = '${marketList.hmcIdx }'><p>${marketList.hmcNM }</p><span></span></a></li>
+									</c:forEach>
+								</ul>
+							</div>
+						</div>
+						<div class="gory_box w260px" id="CompanyPartContainer">
+							<h2>도매법인</h2>
+							<div>
+								<ul id="Company"></ul>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- end condition option -->
-				<!-- start list 1 -->
-				<div class="listDetailType01">
-					<table id="gnbTable" style="border-collapse: collapse; border:1px solid #ccc;">
-						<colgroup>
-							<col style="width: 4%">
-							<col style="width: 8%">
-							<col style="width: 8%">
-							<col style="width: 8%">
-							<col style="width: 6%">
-							<col style="width: 13%">
-							<col style="width: 6%">
-							<col style="width: 7%">
-							<col style="width: 7%">
-							<col style="width: 7%">
-							<col style="width: 13%">
-							<col style="width: 13%">
-						</colgroup>
-						<thead>
-							<tr>
-								<th>순번</th>
-								<th>날짜</th>
-								<th>품목</th>
-								<th>품종</th>
-								<th>등급</th>
-								<th>규격</th>
-								<th>거래량</th>
-								<th>최고가</th>
-								<th>최저가</th>
-								<th>평균가</th>
-								<th>도매시장</th>
-								<th>도매법인</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr >
-								<td colspan = "12" style="height:100px">
-									데이터가 없습니다.
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- end list 1 -->				
-				<!-- start paging -->
 				
-				<div class="paging_wrap" style="margin-bottom:60px;">								
-					<div id="pagination" class="paging">
-						<a href = 'javascript:return false;' class="goFirst" alt="처음으로" onclick='eventController.getAPIData("1");'></a> <!-- javascript:return false; -->
-						<a href="javascript:return false;" class="goPrev" title="이전페이지" onclick='eventController.getAPIData("1");'></a>
-						<a class="pageNum on"><span>1</span></a>
-						<a class="goNext" title="다음페이지" href="javascript:return false;" onclick='eventController.getAPIData("1");'></a>
-						<a class="goLast" title="끝으로" href="javascript:return false;" onclick='eventController.getAPIData("1");'></a>
+				<div class="searchConditionArea floatBox" style="margin-top:10px; !important">
+					<!-- start detail condition -->
+					<div id="GridList" style="float: none !important;">
+						<div class="searchDetail" style="margin-top:20px;">
+							<div class="detailChartBox">
+								<a>등급별 규격 대비 가격 그래프 보기<span class="openIcon"></span></a>
+							</div>
+							<div class="detailChart" id="detailChart" style = "width:100%; height:400px;">
+								
+								
+							</div>
+							<!-- start condition option -->
+							<div class="conditionOption" style="margin-top:20px;">
+								<div class="totalArea">
+									<span class="tot">총 <span class="num" id="totNo">1</span></span> 
+									<span class="pageNum">페이지 번호 <span><strong class="num" id="pageNo">1</strong>
+									<span class="slash">/<span class="totNum" id="totNum">1</span></span></span></span>
+								</div>
+								<div class="searchTotal" style="float:right;">
+									<div class="selectOption" style="float:right;">
+										<select class="searchSelect devSearchSelect" id="pageCount">
+											<option value="10" selected="">10개씩 보기</option>
+											<option value="20">20개씩 보기</option>
+											<option value="30">30개씩 보기</option>
+											<option value="40">40개씩 보기</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<!-- end condition option -->
+							<!-- start list 1 -->
+							<div class="listDetailType01">
+								<table id="gnbTable" style="border-collapse: collapse; border:1px solid #ccc;">
+									<colgroup>
+										<col style="width: 4%">
+										<col style="width: 8%">
+										<col style="width: 8%">
+										<col style="width: 8%">
+										<col style="width: 6%">
+										<col style="width: 13%">
+										<col style="width: 6%">
+										<col style="width: 7%">
+										<col style="width: 7%">
+										<col style="width: 7%">
+										<col style="width: 13%">
+										<col style="width: 13%">
+									</colgroup>
+									<thead>
+										<tr>
+											<th>순번</th>
+											<th>날짜</th>
+											<th>품목</th>
+											<th>품종</th>
+											<th>등급</th>
+											<th>규격</th>
+											<th>거래량</th>
+											<th>최고가</th>
+											<th>최저가</th>
+											<th>평균가</th>
+											<th>도매시장</th>
+											<th>도매법인</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr >
+											<td colspan = "12" style="height:100px">
+												데이터가 없습니다.
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<!-- end list 1 -->				
+							<!-- start paging -->
+							
+							<div class="paging_wrap" style="margin-bottom:60px;">								
+								<div id="pagination" class="paging">
+									<a href = 'javascript:return false;' class="goFirst" alt="처음으로" onclick='eventController.getAPIData("1");'></a> <!-- javascript:return false; -->
+									<a href="javascript:return false;" class="goPrev" title="이전페이지" onclick='eventController.getAPIData("1");'></a>
+									<a class="pageNum on"><span>1</span></a>
+									<a class="goNext" title="다음페이지" href="javascript:return false;" onclick='eventController.getAPIData("1");'></a>
+									<a class="goLast" title="끝으로" href="javascript:return false;" onclick='eventController.getAPIData("1");'></a>
+								</div>
+							</div>
+							<!-- end paging -->
+						</div>
 					</div>
 				</div>
-				<!-- end paging -->
-			</div>
-		</div>
-	</div>
+        	</div>
+        </div>
+    </div>
 </div>
+
 
 <div id="ExcelUpload" class="modal fade" style="margin-top:20px; z-index:1000">
 	<div class="modal-dialog">

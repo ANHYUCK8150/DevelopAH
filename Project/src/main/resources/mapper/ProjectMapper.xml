@@ -27,7 +27,7 @@
 	
 	<select id="list" resultType="ProjectVO">
 		select
-			*
+			*, replace(replace(pbSkill,',',' '),'C#','CS') AS pbListClass
 		from (
 			select
 				@ROWNUM := @ROWNUM + 1 AS pno

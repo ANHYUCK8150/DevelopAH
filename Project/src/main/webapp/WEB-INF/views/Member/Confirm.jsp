@@ -118,19 +118,26 @@ $(document).ready(function(){
 });
 
 </script>
-<div class="ds_mall" style="margin-top:20px;">
-	<div class="ds_login_article_wrap">
-		
-		<div class="goodsSearch">
-            <div class="titleArea">
+
+<div class="all-title-box">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
                 <h2>회원가입</h2>
-                <ul class="pageArea">
-                    <li class="firstArea"><a href="/" title="홈"></a></li>
-                    <li class="nowArea">회원가입</li>
+                <ul class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/"><i class="fa fa-home"></i></a></li>
+                    <li class="breadcrumb-item active">회원가입</li>
                 </ul>
             </div>
-	           
-			<form name="confirm_form" id="confirm_form" method="post" action="/member/reg.do" onsubmit="Confirm(); return false;">
+        </div>
+    </div>
+</div>
+
+<div class="about-box-main">
+    <div class="container">
+        <div class="row">
+        	<div class="col-xl-12 col-lg-12 col-sm-12 col-xs-12">
+        	<form name="confirm_form" id="confirm_form" method="post" action="/member/reg.do" onsubmit="Confirm(); return false;">
 	            <section class="join">
 	                <div class="joinIp confirm">
 	                    <dl>
@@ -163,11 +170,10 @@ $(document).ready(function(){
 	                </div>
 	            </section>
 	           </form>
-
-	
 	       </div>
-			
-			
-	</div>
-		
+        </div>
+    </div>
 </div>
+
+
+
